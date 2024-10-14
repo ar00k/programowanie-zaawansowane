@@ -1,9 +1,10 @@
 ﻿#include <iostream>
-using namespace std;
+#include "ListaDwustronna.h"
 
+ListaDwustronna::Element::Element() :wartosc{}, poprzedni(nullptr), nastepny{} {
 
+};
 
-int main()
-{
-    
-}
+ListaDwustronna::ListaDwustronna() :poczatek(nullptr), koniec(nullptr) {
+	
+};
