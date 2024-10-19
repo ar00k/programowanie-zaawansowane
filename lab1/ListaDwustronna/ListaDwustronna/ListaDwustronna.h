@@ -59,6 +59,11 @@ public:
     /// Usuwa wszystkie elementy z listy.
     void WyczyscListe();
 
+    void DodajElementNaIndeks(int indeks, int wartosc);
+    void UsunElementNaIndeks(int indeks);
+    void WyswietlNastepnyElement(int indeks);
+    void WyswietlPoprzedniElement(int indeks);
+
     /// Przeciazenie operatora << do wyswietlania elementow listy.
     /// @param os Strumien wyjsciowy.
     /// @param lista Lista dwukierunkowa.

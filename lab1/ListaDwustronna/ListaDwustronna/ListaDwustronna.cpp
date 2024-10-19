@@ -144,4 +144,88 @@ std::ostream& operator<<(std::ostream& os, const ListaDwustronna& lista) {
 	os << *temp << "\n";
 	return os;
 }
+void ListaDwustronna::DodajElementNaIndeks(int indeks, int wartosc) {
+	if (indeks < 0 || indeks > ilosc) {
+		std::cout << "Nieprawidłowy indeks.\n";
+		return;
+	}
+	if (indeks == 0) {
+		DodajElementNaPoczatku(wartosc);
+		return;
+	}
+	if (indeks == ilosc) {
+		DodajElementNaKoncu(wartosc);
+		return;
+	}
+
+	Element* nowyElement = new Element(wartosc);
+	Element* temp = poczatek;
+
+	for (int i = 0; i < indeks - 1; ++i) {
+		temp = temp->nastepny;
+	}
+
+	nowyElement->nastepny = temp->nastepny;
+	nowyElement->poprzedni = temp;
+	if (temp->nastepny != nullptr) {
+		temp->nastepny->poprzedni = nowyElement;
+	}
+	temp->nastepny = nowyElement;
+
+	++ilosc;
+}
+
+void ListaDwustronna::UsunElementNaIndeks(int indeks) {
+	if (indeks < 0 || indeks >= ilosc) {
+		std::cout << "Nieprawidłowy indeks.\n";
+		return;
+	}
+	if (indeks == 0) {
+		UsunElementZPoczatkuListy();
+		return;
+	}
+	if (indeks == ilosc - 1) {
+		UsunElementZKoncaListy();
+		return;
+	}
+
+	Element* temp = poczatek;
+	for (int i = 0; i < indeks; ++i) {
+		temp = temp->nastepny;
+	}
+
+	temp->poprzedni->nastepny = temp->nastepny;
+	temp->nastepny->poprzedni = temp->poprzedni;
+
+	delete temp;
+	--ilosc;
+}
+
+void ListaDwustronna::WyswietlNastepnyElement(int indeks) {
+	if (indeks < 0 || indeks >= ilosc - 1) {
+		std::cout << "Nieprawidlowy indeks lub brak kolejnego elementu.\n";
+		return;
+	}
+
+	Element* temp = poczatek;
+	for (int i = 0; i <= indeks; ++i) {
+		temp = temp->nastepny;
+	}
+
+	std::cout << "Nastepny element: " << *temp << "\n";
+}
+
+void ListaDwustronna::WyswietlPoprzedniElement(int indeks) {
+	if (indeks <= 0 || indeks >= ilosc) {
+		std::cout << "Nieprawidlowy indeks lub brak poprzedniego elementu.\n";
+		return;
+	}
+
+	Element* temp = poczatek;
+	for (int i = 0; i < indeks; ++i) {
+		temp = temp->nastepny;
+	}
+
+	std::cout << "Poprzedni element: " << *temp->poprzedni << "\n";
+}
 //std::ostream& operator<<(std::ostream& os, const ListaDwustronna a);
