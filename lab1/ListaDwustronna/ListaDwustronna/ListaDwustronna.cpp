@@ -229,3 +229,7 @@ void ListaDwustronna::WyswietlPoprzedniElement(int indeks) {
 	std::cout << "Poprzedni element: " << *temp->poprzedni << "\n";
 }
 //std::ostream& operator<<(std::ostream& os, const ListaDwustronna a);
+//void ListaDwustronna::WypiszElementyListy() {
+//
+//	std::cout << *this;
+//}
